@@ -29,16 +29,9 @@ Remember that each message must have a Text, priority, and whether it is secret 
 
 | Method    | Endpoint          | Actions                                                                           |
 | --------- | ----------------- | ----------------------------------------------------------------------------------|
-| GET       | `/cities/afford`  | - Put all secret messages on the secret queue                                     |
-|           |                   | - Put all NON secret messages with affordability index < 6 in the cities1 queue   |
-|           |                   | - Put all other messages in the cities2 queue                                     |
-| GET       | `/cities/homes`   | - Put all secret messages on the secret queue                                     |
-|           |                   | - Put all NON secret messages with home prices > 200000 in the cities1 queue      |
-|           |                   | - Put all other messages in the cities2 queue                                     |
-| GET       | `/cities/names`   | - Put all secret messages on the secret queue                                     |
-|           |                   | - Put all NON secret messages the cities1 queue                                   |
-|           |                   | - Put nothing in the cities2 queue                                                |
-
+| GET       | `/cities/afford`  | - Put all secret messages on the secret queue<br> - Put all NON secret messages with affordability index < 6 in the cities1 queue<br> - Put all other messages in the cities2 queue     |
+| GET       | `/cities/homes`   | - Put all secret messages on the secret queue<br> - Put all NON secret messages with home prices > 200000 in the cities1 queue<br> - Put all other messages in the cities2 queue        |
+| GET       | `/cities/names`   | - Put all secret messages on the secret queue<br> - Put all NON secret messages the cities1 queue<br> - Put nothing in the cities2 queue                                                |
 
 #### Recommended Order
 1. Create a new project with 7 dependencies
