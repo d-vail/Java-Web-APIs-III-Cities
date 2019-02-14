@@ -67,7 +67,24 @@ public class CityController {
    */
   @GetMapping("/homes")
   public void homes() {
+    ArrayList<City> cities = new ArrayList<>(CITY_REPO.findAll());
 
+    for(City c : cities) {
+      boolean isConfidential = new Random().nextBoolean();
+      final CityMessage CITY_MSG = new CityMessage(c.toString(), c.getAffordabilityIndex(),
+              isConfidential);
+
+      log.info("Sending message...");
+      if(isConfidential) {
+        RABBIT_TEMPLATE.convertAndSend(CitiesApplication.QUEUE_CONFIDENTIAL, CITY_MSG);
+      } else {
+        if(c.getMedianHomePrice() > 200000) {
+          RABBIT_TEMPLATE.convertAndSend(CitiesApplication.QUEUE_CITIES1, CITY_MSG);
+        } else {
+          RABBIT_TEMPLATE.convertAndSend(CitiesApplication.QUEUE_CITIES2, CITY_MSG);
+        }
+      }
+    }
   }
 
   /**
