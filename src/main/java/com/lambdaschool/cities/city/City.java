@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+/**
+ * The City class presents a city object with data regarding its affordability.
+ */
 @Data
 @Entity
 public class City {
