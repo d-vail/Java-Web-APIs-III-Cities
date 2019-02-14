@@ -17,8 +17,8 @@ public class CityMessageListener {
    * @param msg A message of type CityMessage that was sent to a watched queue
    */
   @RabbitListener(queues = {CitiesApplication.QUEUE_CONFIDENTIAL,
-                            CitiesApplication.QUEUE_LOW_AI,
-                            CitiesApplication.QUEUE_HIGH_AI})
+                            CitiesApplication.QUEUE_CITIES1,
+                            CitiesApplication.QUEUE_CITIES2})
   public void receiveMessage(CityMessage msg) {
     log.info("Received Message: { " + msg.toString() + " }");
   }

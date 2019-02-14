@@ -13,8 +13,8 @@ import org.springframework.context.annotation.Bean;
 public class CitiesApplication {
   public static final String EXCHANGE_NAME = "LambdaServer";
   public static final String QUEUE_CONFIDENTIAL = "Confidential";
-  public static final String QUEUE_LOW_AI = "LowAffordabilityIndex";
-  public static final String QUEUE_HIGH_AI = "HighAffordabilityIndex";
+  public static final String QUEUE_CITIES1 = "Cities1";
+  public static final String QUEUE_CITIES2 = "Cities2";
 
   public static void main(String[] args) {
     SpringApplication.run(CitiesApplication.class, args);
@@ -33,12 +33,12 @@ public class CitiesApplication {
 
   @Bean
   public Queue appLowAIQueue() {
-    return new Queue(QUEUE_LOW_AI);
+    return new Queue(QUEUE_CITIES1);
   }
 
   @Bean
   public Queue appHighAIQueue() {
-    return new Queue(QUEUE_HIGH_AI);
+    return new Queue(QUEUE_CITIES2);
   }
 
   // Bind queues to server
@@ -49,12 +49,12 @@ public class CitiesApplication {
 
   @Bean
   public Binding declareBindingLowAIQueue() {
-    return BindingBuilder.bind(appLowAIQueue()).to(appExchange()).with(QUEUE_LOW_AI);
+    return BindingBuilder.bind(appLowAIQueue()).to(appExchange()).with(QUEUE_CITIES1);
   }
 
   @Bean
   public Binding declareBindingHighAIQueue() {
-    return BindingBuilder.bind(appHighAIQueue()).to(appExchange()).with(QUEUE_HIGH_AI);
+    return BindingBuilder.bind(appHighAIQueue()).to(appExchange()).with(QUEUE_CITIES2);
   }
 
   // Instantiate a Jackson2JsonMessageConverter for Spring's use
