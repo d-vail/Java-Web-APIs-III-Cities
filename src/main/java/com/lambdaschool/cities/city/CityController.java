@@ -94,6 +94,19 @@ public class CityController {
    */
   @GetMapping("/names")
   public void names() {
+    ArrayList<City> cities = new ArrayList<>(CITY_REPO.findAll());
 
+    for(City c : cities) {
+      boolean isConfidential = new Random().nextBoolean();
+      final CityMessage CITY_MSG = new CityMessage(c.toString(), c.getAffordabilityIndex(),
+              isConfidential);
+
+      log.info("Sending message...");
+      if(isConfidential) {
+        RABBIT_TEMPLATE.convertAndSend(CitiesApplication.QUEUE_CONFIDENTIAL, CITY_MSG);
+      } else {
+        RABBIT_TEMPLATE.convertAndSend(CitiesApplication.QUEUE_CITIES1, CITY_MSG);
+      }
+    }
   }
 }
