@@ -11,7 +11,6 @@ import javax.persistence.Id;
 public class City {
   private @Id @GeneratedValue Long id;
   private String name;
-  private String state;
   private int medianHomePrice;
   private int affordabilityIndex;
 
@@ -24,14 +23,12 @@ public class City {
   /**
    * Constructor
    *
-   * @param name                City name
-   * @param state               State city is located in
+   * @param name                City name and state
    * @param medianHomePrice     Median price for homes in city
    * @param affordabilityIndex  Affordability index
    */
-  public City(String name, String state, int medianHomePrice, int affordabilityIndex) {
+  public City(String name, int medianHomePrice, int affordabilityIndex) {
     this.name = name;
-    this.state = state;
     this.medianHomePrice = medianHomePrice;
     this.affordabilityIndex = affordabilityIndex;
   }
